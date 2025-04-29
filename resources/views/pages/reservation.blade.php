@@ -595,8 +595,8 @@
            // alert(user);
             // Enable pusher logging - don't include this in production
             Pusher.logToConsole = false;
-            var pusher = new Pusher('83a310a5fd0558a9e5bf', {
-              cluster: 'ap2'
+            var pusher = new Pusher('<?= env('PUSHER_APP_KEY') ?>', {
+              cluster: '<?= env('PUSHER_APP_CLUSTER') ?>'
             });
             var channel = pusher.subscribe('foodbeeApp');
             channel.bind('ReservationStatus'+user, function(data) {

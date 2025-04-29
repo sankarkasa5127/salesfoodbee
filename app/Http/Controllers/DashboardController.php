@@ -711,13 +711,13 @@ $monthnamejson=json_encode($arrayMonth);
         $response['start']='';
         $pusherdata['message']=$response;
                     $options = array(
-                'cluster' => 'ap2',
+                'cluster' => env('PUSHER_APP_CLUSTER'),
                 'useTLS' => true
             );
             $pusher = new Pusher(
-                    '83a310a5fd0558a9e5bf',
-                    '728027e92c112e10790d',
-                    '1332051',
+                    env('PUSHER_APP_KEY'),
+                    env('PUSHER_APP_SECRET'),
+                    env('PUSHER_APP_ID'),
                     $options
             );
             $pusher->trigger('foodbeeApp', 'OrderStatus'.$id, $pusherdata);

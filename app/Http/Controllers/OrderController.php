@@ -384,16 +384,16 @@ class OrderController extends Controller
         $response['data']=$orderDetail;
      
         $pusherdata['message']=$response;
-                    $options = array(
-                'cluster' => 'ap2',
-                'useTLS' => true
-            );
-            $pusher = new Pusher(
-                    '83a310a5fd0558a9e5bf',
-                    '728027e92c112e10790d',
-                    '1332051',
-                    $options
-            );
+        $options = array(
+            'cluster' => env('PUSHER_APP_CLUSTER'),
+            'useTLS' => true
+        );
+        $pusher = new Pusher(
+            env('PUSHER_APP_KEY'),
+            env('PUSHER_APP_SECRET'),
+            env('PUSHER_APP_ID'),
+            $options
+        );
             $pusher->trigger('foodbeeApp', 'OrderStatus'.$id, $pusherdata);
         // if($orderDetail->order_status = 'Delivered'){
         //     Mail::send('email_temp.Delivered_order_email', $data, function($message) use ($data) {
